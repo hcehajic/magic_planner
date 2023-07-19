@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import '../styles/Settings.css';
 import QRCode from 'react-qr-code';
 
@@ -43,10 +42,25 @@ const Settings = (props) => {
 
   const handleFontChange = async (event) => {
     const selectedFont = event.target.value;
+
     try {
       setSelectedFont(selectedFont);
-      await axios.put(API_BASE_URL + '/api/v1/account/settings/font/' + props.userSettings.id, { font: selectedFont });
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/font/${props.userSettings.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ font: selectedFont }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
+      console.error(error);
       console.error('Error updating font:', error);
     }
   };
@@ -58,7 +72,20 @@ const Settings = (props) => {
 
   const handleApplyButtonClickPriorityTask = async () => {
     try {
-      await axios.put(API_BASE_URL + '/api/v1/account/settings/priority/' + props.userSettings.id, { priority: selectedColorPT });
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/priority/${props.userSettings.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ priority: selectedColorPT }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
       console.error('Error updating color:', error);
     }
@@ -71,7 +98,20 @@ const Settings = (props) => {
 
   const handleApplyButtonClickNormalTask = async () => {
     try {
-      await axios.put(API_BASE_URL + '/api/v1/account/settings/normal/' + props.userSettings.id, { normal: selectedColorNT });
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/normal/${props.userSettings.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ normal: selectedColorNT }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
       console.error('Error updating color:', error);
     }
@@ -84,7 +124,20 @@ const Settings = (props) => {
 
   const handleApplyButtonClickSubTask = async () => {
     try {
-      await axios.put(API_BASE_URL + '/api/v1/account/settings/sub/' + props.userSettings.id, { sub: selectedColorST });
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/sub/${props.userSettings.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ sub: selectedColorST }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
       console.error('Error updating color:', error);
     }
@@ -97,7 +150,20 @@ const Settings = (props) => {
 
   const handleApplyButtonClickFColor = async () => {
     try {
-      await axios.put(API_BASE_URL + '/api/v1/account/settings/fcolor/' + props.userSettings.id, { fcolor: selectedColorF });
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/fcolor/${props.userSettings.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ fcolor: selectedColorF }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
       console.error('Error updating color:', error);
     }
@@ -110,7 +176,20 @@ const Settings = (props) => {
 
   const handleApplyButtonClickBackground = async () => {
     try {
-      await axios.put(API_BASE_URL + '/api/v1/account/settings/background/' + props.userSettings.id, { background: selectedColorBG });
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/background/${props.userSettings.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ background: selectedColorBG }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
       console.error('Error updating color:', error);
     }
@@ -123,7 +202,20 @@ const Settings = (props) => {
 
   const handleApplyButtonClickProgress = async () => {
     try {
-      await axios.put(API_BASE_URL + '/api/v1/account/settings/progress/' + props.userSettings.id, { progress: selectedColorPB });
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/progress/${props.userSettings.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ progress: selectedColorPB }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
       console.error('Error updating color:', error);
     }
@@ -162,7 +254,20 @@ const Settings = (props) => {
     if (newSize && newSize > 0) {
       setFontSize(newSize);
       try {
-        await axios.put(API_BASE_URL + '/api/v1/account/settings/fontsize/' + props.userSettings.id, { size: newSize });
+        const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/fontsize/${props.userSettings.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ size: newSize }),
+        });
+      
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+      
+        const data = await response.json();
+        console.log(data);
       } catch (error) {
         console.error('Error updating font size:', error);
       }
@@ -222,35 +327,100 @@ const Settings = (props) => {
 
   const handleSaveButtonName = async (nameInput) => {
     try {
-      await axios.put(API_BASE_URL + '/api/v1/accounts/name/' + id, { name: nameInput });
+      const response = await fetch(`${API_BASE_URL}/api/v1/accounts/name/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name: nameInput }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
     }
   };
 
   const handleSaveButtonSurname = async (surnameInput) => {
     try {
-      await axios.put(API_BASE_URL + '/api/v1/accounts/surname/' + id, { surname: surnameInput });
+      const response = await fetch(`${API_BASE_URL}/api/v1/accounts/surname/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ surname: surnameInput }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
     }
   };
 
   const handleSaveButtonPassword = async (passInput) => {
     try {
-      await axios.put(API_BASE_URL + '/api/v1/accounts/pass/' + id, { password: passInput });
+      const response = await fetch(`${API_BASE_URL}/api/v1/accounts/pass/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password: passInput }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
     }
   };
 
   const handleSaveButtonEmail = async (emailInput) => {
     try {
-      await axios.put(API_BASE_URL + '/api/v1/accounts/email/' + id, { email: emailInput });
+      const response = await fetch(`${API_BASE_URL}/api/v1/accounts/email/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: emailInput }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
     }
   };
 
   const handleSaveButtonKidName = async (kidNameInput) => {
     try {
-      await axios.put(API_BASE_URL + '/api/v1/accounts/kid/' + id, { kidName: kidNameInput });
+      const response = await fetch(`${API_BASE_URL}/api/v1/accounts/kid/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ kidName: kidNameInput }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
     }
   };
