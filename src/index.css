@@ -5,9 +5,42 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(to bottom right, #ffffff, #002366);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  padding-right: 0 !important; /* Add !important to override other styles */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.registration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.registration {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 200px;
+}
+
+.registration:hover {
+  background-color: #45a049;
+}
+
+.registration:active {
+  background-color: #3e8e41;
+}
+

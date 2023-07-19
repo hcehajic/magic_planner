@@ -1,0 +1,64 @@
+.registration-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .registration-form {
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  
+  .registration-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .registration-form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .registration-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .registration-form button:hover {
+    background-color: #45a049;
+  }
+  
+  .account-created {
+    text-align: center;
+  }
+  
+  .account-created h2 {
+    margin-bottom: 10px;
+  }
+  
+  .account-created p {
+    margin-bottom: 5px;
+  }
+  
+  .account-created button {
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .account-created button:hover {
+    background-color: #45a049;
+  }
+
+  
+  
