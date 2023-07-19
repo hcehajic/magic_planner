@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import '../styles/TaskForm.css';
 
@@ -31,6 +31,10 @@ function TaskForm(props) {
   const handleCancel = () => {
     props.onCancel();
   };
+
+  useEffect(() => {
+    setCreationDate(props.selectedDate);
+  }, [props.selectedDate]);
 
   return (
     <form className="task-form" onSubmit={handleSubmit}>

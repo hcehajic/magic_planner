@@ -22,6 +22,27 @@ function App() {
   const API_BASE_URL = 'https://zavrsni-back.herokuapp.com';
   // const API_BASE_URL = 'http://localhost:8080';
 
+  const storeLoginTime = () => {
+    const loginTime = new Date().getTime();
+    localStorage.setItem('loginTime', loginTime);
+  };
+  
+  const isSessionExpired = () => {
+    const loginTime = sessionStorage.getItem('loginTime');
+    if (loginTime) {
+      const currentTime = new Date().getTime();
+      return currentTime - parseInt(loginTime, 10) > 30 * 60 * 1000; // 30 minutes in milliseconds
+    }
+    return true;
+  }; 
+
+  useEffect(() => {
+    // Check if the user's session has expired
+    if (isSessionExpired()) {
+      handleLogout(); // Log out the user if the session has expired
+    }
+  }, []);
+
   useEffect(() => {
     async function fetchTasks() {
       try {
@@ -82,6 +103,7 @@ function App() {
           }
         }
         fetchSettings();
+        storeLoginTime();
       } else {
         setLoginError(true);
         console.error('Nevalidni podaci');
@@ -174,14 +196,16 @@ function App() {
     }
   }, [isAuthenticated]);
 
-  const tasksByDate = new Map();
+  const currentDate = new Date();
+  const getTasksForCurrentMonth = () => {
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
 
-  tasks.forEach((task) => {
-    const dueDate = task.dueDate.substring(0, 10);
-    const taskList = tasksByDate.get(dueDate) || [];
-    taskList.push(task.taskName);
-    tasksByDate.set(dueDate, taskList);
-  });
+    return tasks.filter((task) => {
+      const taskDate = new Date(task.dueDate);
+      return taskDate.getMonth() === currentMonth && taskDate.getFullYear() === currentYear;
+    });
+  };
 
   return (
     <div className="app-container">
@@ -219,8 +243,11 @@ function App() {
         )}
 
         {isAuthenticated && showCalendar && (
-          <Calendar tasksByDate={tasksByDate} onAddTask={handleTaskFormSubmit} accountId={user.id} />
-          //<Calendar tasksByDate={tasks} onAddTask={handleTaskFormSubmit} accountId={user.id} />
+          <Calendar
+            tasks={getTasksForCurrentMonth()}
+            onAddTask={handleTaskFormSubmit}
+            accountId={user.id}
+          />
         )}
 
       </div>
