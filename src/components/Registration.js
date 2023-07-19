@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import '../styles/Registration.css';
 
 const Registration = ({ onCancel }) => {
@@ -28,15 +27,26 @@ const Registration = ({ onCancel }) => {
       dateOfBirth: dateOfBirth
     };
 
-    axios
-      .post(`${API_BASE_URL}/api/v1/accounts/create`, accountRequest)
+    fetch(`${API_BASE_URL}/api/v1/accounts/create`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(accountRequest),
+    })
       .then((response) => {
-        console.log(response.data);
-
-        const createdAccount = response.data;
-
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+    
+        const createdAccount = data;
+    
         setAccountData(createdAccount);
-
+    
         setName('');
         setSurname('');
         setPassword('');
@@ -44,22 +54,29 @@ const Registration = ({ onCancel }) => {
         setKidName('');
         setKidMale(false);
         setDateOfBirth('');
-        createUserSettings(response.data.id);
+        createUserSettings(data.id);
       })
       .catch((error) => {
         console.error(error);
-      });
+      });    
   };
 
   const createUserSettings = (accountId) => {
-    axios
-      .post(`${API_BASE_URL}/api/v1/account/settings/default/${accountId}`)
+    fetch(`${API_BASE_URL}/api/v1/account/settings/default/${accountId}`, {
+      method: 'POST',
+    })
       .then((response) => {
-        console.log(response.data);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
       })
       .catch((error) => {
         console.error(error);
-      });
+      });    
   };
 
   const handleLoginClick = () => {
