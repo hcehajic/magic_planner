@@ -3,7 +3,7 @@ import TaskListItem from './TaskListItem';
 function TaskList(props) {
   const { tasks, onDeleteTask, uid } = props;
   const filteredTasks = tasks.filter((task) => {
-    if (task.accountId === uid) return true;
+    if (task.accountId === uid && !task.done) return true;
     return false;
   });
   return (

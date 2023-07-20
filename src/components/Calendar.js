@@ -178,7 +178,6 @@ function Calendar(props) {
         <div className="popup-overlay">
           <div className="popup-content">
             <TaskForm
-              // Pass the selectedDate prop to TaskForm
               selectedDate={selectedDate}
               defaultDueDate={selectedDate}
               onCancel={closeTaskForm}

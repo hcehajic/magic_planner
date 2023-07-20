@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Header.css';
 
-function Header({ isAuthenticated, onLogout, onAddTask, onSettings, onHome, onCalendar }) {
+function Header({ isAuthenticated, onLogout, onAddTask, onSettings, onHome, onCalendar, onDone }) {
   const handleLogoutClick = () => {
     onLogout();
     window.location.reload();
@@ -19,6 +19,10 @@ function Header({ isAuthenticated, onLogout, onAddTask, onSettings, onHome, onCa
     onHome();
   };
 
+  const handleDoneClick = () => {
+    onDone();
+  };
+
   const handleCalendarClick = () => {
     onCalendar();
   };
@@ -29,13 +33,16 @@ function Header({ isAuthenticated, onLogout, onAddTask, onSettings, onHome, onCa
       {isAuthenticated && (
         <nav className="nav">
           <div className="nav-item">
+            <button className="nav-link" onClick={handleHomeClick}>Početna</button>
+          </div>
+          <div className="nav-item">
+            <button className="nav-link" onClick={handleDoneClick}>Urađeni zadaci</button>
+          </div>
+          <div className="nav-item">
             <button className="nav-link" onClick={handleAddTaskClick}>Dodaj zadatak</button>
           </div>
           <div className="nav-item">
             <button className="nav-link" onClick={handleSettingsClick}>Postavke</button>
-          </div>
-          <div className="nav-item">
-            <button className="nav-link" onClick={handleHomeClick}>Početna</button>
           </div>
           <div className="nav-item">
             <button className="nav-link" onClick={handleCalendarClick}>Kalendar</button>

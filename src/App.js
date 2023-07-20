@@ -6,6 +6,7 @@ import LoginForm from './components/LoginForm';
 import Settings from './components/Settings';
 import Calendar from './components/Calendar';
 import Registration from './components/Registration';
+import DoneTasks from './components/DoneTasks';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -18,6 +19,7 @@ function App() {
   const [user, setUser] = useState();
   const [userSettings, setUserSettings] = useState();
   const [showRegistration, setShowRegistration] = useState(false);
+  const [showDone, setShowDone] = useState(false);
 
   const API_BASE_URL = 'https://zavrsni-back.herokuapp.com';
   // const API_BASE_URL = 'http://localhost:8080';
@@ -26,7 +28,7 @@ function App() {
     const loginTime = new Date().getTime();
     localStorage.setItem('loginTime', loginTime);
   };
-  
+
   const isSessionExpired = () => {
     const loginTime = sessionStorage.getItem('loginTime');
     if (loginTime) {
@@ -34,7 +36,7 @@ function App() {
       return currentTime - parseInt(loginTime, 10) > 30 * 60 * 1000; // 30 minutes in milliseconds
     }
     return true;
-  }; 
+  };
 
   useEffect(() => {
     // Check if the user's session has expired
@@ -115,6 +117,7 @@ function App() {
 
   const handleLogout = () => {
     console.log('Odjavljivanje');
+    setShowDone(false);
     setIsAuthenticated(false);
     setShowTaskForm(false);
     setShowTasks(false);
@@ -123,6 +126,15 @@ function App() {
 
   const handleAddTaskClick = () => {
     setShowTaskForm(true);
+    setShowDone(false);
+    setShowSettings(false);
+    setShowTasks(false);
+    setShowCalendar(false);
+  };
+
+  const handleDoneClick = () => {
+    setShowDone(true);
+    setShowTaskForm(false);
     setShowSettings(false);
     setShowTasks(false);
     setShowCalendar(false);
@@ -130,6 +142,7 @@ function App() {
 
   const handleHomeClick = () => {
     setShowTaskForm(false);
+    setShowDone(false);
     setShowSettings(false);
     setShowTasks(true);
     setShowCalendar(false);
@@ -137,6 +150,7 @@ function App() {
 
   const handleCalendarClick = () => {
     setShowTaskForm(false);
+    setShowDone(false);
     setShowSettings(false);
     setShowTasks(false);
     setShowCalendar(true);
@@ -145,6 +159,7 @@ function App() {
   const handleSettingsClick = () => {
     setShowTaskForm(false);
     setShowSettings(true);
+    setShowDone(false);
     setShowTasks(false);
     setShowCalendar(false);
   };
@@ -216,6 +231,7 @@ function App() {
           onLogout={handleLogout}
           onAddTask={handleAddTaskClick}
           onHome={handleHomeClick}
+          onDone={handleDoneClick}
           onSettings={handleSettingsClick}
           onCalendar={handleCalendarClick}
         />
@@ -228,6 +244,10 @@ function App() {
 
         {isAuthenticated && !showSettings && showTasks && (
           <TaskList tasks={tasks} onDeleteTask={handleDeleteTask} uid={user.id} API_BASE_URL={API_BASE_URL} />
+        )}
+
+        {isAuthenticated && !showSettings && showDone && (
+          <DoneTasks tasks={tasks} onDeleteTask={handleDeleteTask} uid={user.id} API_BASE_URL={API_BASE_URL} />
         )}
 
         {!isAuthenticated && showRegistration && (
