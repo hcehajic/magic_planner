@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import TaskListItem from './TaskListItem'; 
 import '../styles/DoneTasks.css';
 
-const API_BASE_URL = 'https://zavrsni-back.herokuapp.com'; 
+const API_BASE_URL = 'https://zavrsni-be-ba8430d30a0c.herokuapp.com'; 
 
 function DoneTasks(props) {
   const { tasks, onDeleteTask, uid } = props;
@@ -26,9 +26,15 @@ function DoneTasks(props) {
     <div>
       <h2>Urađeni zadaci</h2>
       <ul>
-        {doneTasks.map((task) => (
-          <TaskListItem key={task.id} task={task} onDeleteTask={onDeleteTask} />
-        ))}
+      {doneTasks.length === 0 ? (
+        <p>Nema urađenih zadataka</p>
+      ) : (
+        <ul>
+          {doneTasks.map((task) => (
+            <TaskListItem key={task.id} task={task} onDeleteTask={onDeleteTask} />
+          ))}
+        </ul>
+      )}
       </ul>
     </div>
   );

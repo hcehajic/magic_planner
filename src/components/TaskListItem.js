@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import '../styles/TaskListItem.css';
 
-const API_BASE_URL = 'https://zavrsni-back.herokuapp.com';
+const API_BASE_URL = 'https://zavrsni-be-ba8430d30a0c.herokuapp.com';
 // const API_BASE_URL = 'http://localhost:8080';
 
 function TaskListItem(props) {
