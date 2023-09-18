@@ -251,7 +251,7 @@ function App() {
         )}
 
         {!isAuthenticated && showRegistration && (
-          <Registration onCancel={() => setShowRegistration(false)} />
+          <Registration onCancel={() => setShowRegistration(false) } />
         )}
 
         {showTaskForm && (

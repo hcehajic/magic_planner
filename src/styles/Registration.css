@@ -21,7 +21,7 @@
     border-radius: 4px;
   }
   
-  .registration-form button {
+  .submit-button {
     width: 100%;
     padding: 10px;
     background-color: #4caf50;
@@ -31,7 +31,7 @@
     cursor: pointer;
   }
   
-  .registration-form button:hover {
+  .submit-button:hover {
     background-color: #45a049;
   }
   
@@ -47,7 +47,7 @@
     margin-bottom: 5px;
   }
   
-  .account-created button {
+  .submit-button {
     padding: 8px 16px;
     background-color: #4caf50;
     color: #fff;
@@ -56,9 +56,18 @@
     cursor: pointer;
   }
   
-  .account-created button:hover {
+  .submit-button:hover {
     background-color: #45a049;
   }
 
+  .cancel-button {
+    background-color: red;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+  }
   
+  .cancel-button:hover {
+    background-color: darkred;
+  }
   

@@ -150,7 +150,8 @@ const Registration = ({ onCancel }) => {
         </label>
         <br />
 
-        <button type="submit">Registriraj se</button>
+        <button type="submit" className="submit-button">Registriraj se</button>
+        <button onClick={onCancel} className="cancel-button">Odustani od registracije</button>
       </form>
     </div>
   );
