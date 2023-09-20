@@ -37,15 +37,17 @@ const Settings = (props) => {
   const [emailInput, setEmailInput] = useState('');
   const [kidNameInput, setKidNameInput] = useState('');
 
-  const API_BASE_URL = 'https://zavrsni-back.herokuapp.com';
+  const API_BASE_URL = 'https://zavrsni-be-ba8430d30a0c.herokuapp.com';
   // const API_BASE_URL = 'http://localhost:8080';
+
+  
 
   const handleFontChange = async (event) => {
     const selectedFont = event.target.value;
 
     try {
       setSelectedFont(selectedFont);
-      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/font/${props.userSettings.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/font/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +74,7 @@ const Settings = (props) => {
 
   const handleApplyButtonClickPriorityTask = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/priority/${props.userSettings.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/priority/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -98,7 +100,7 @@ const Settings = (props) => {
 
   const handleApplyButtonClickNormalTask = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/normal/${props.userSettings.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/normal/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -124,7 +126,7 @@ const Settings = (props) => {
 
   const handleApplyButtonClickSubTask = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/sub/${props.userSettings.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/sub/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -150,7 +152,7 @@ const Settings = (props) => {
 
   const handleApplyButtonClickFColor = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/fcolor/${props.userSettings.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/fcolor/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -176,7 +178,7 @@ const Settings = (props) => {
 
   const handleApplyButtonClickBackground = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/background/${props.userSettings.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/background/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -202,7 +204,7 @@ const Settings = (props) => {
 
   const handleApplyButtonClickProgress = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/progress/${props.userSettings.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/progress/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -254,7 +256,7 @@ const Settings = (props) => {
     if (newSize && newSize > 0) {
       setFontSize(newSize);
       try {
-        const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/fontsize/${props.userSettings.id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/v1/account/settings/fontsize/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -523,7 +525,6 @@ const Settings = (props) => {
             <button onClick={() => handleEditButtonClick('password')}>Uredi</button>
           )}
         </div>
-
         <div>
           <label htmlFor="email">Email:</label>
           {!isEditingEmail ? (
@@ -597,6 +598,7 @@ const Settings = (props) => {
         <p className="example-text" style={{ fontFamily: selectedFont, fontSize: fontSize }}>
           Primjer teksta u odabranom fontu
         </p>
+
 
         <div>
           <label htmlFor="fontSize">Font Size:</label>

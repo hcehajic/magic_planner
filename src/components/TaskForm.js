@@ -28,13 +28,12 @@ function TaskForm(props) {
     }
   };
 
-  const handleCancel = () => {
-    props.onCancel();
-  };
 
   useEffect(() => {
     setCreationDate(props.selectedDate);
   }, [props.selectedDate]);
+
+  
 
   return (
     <form className="task-form" onSubmit={handleSubmit}>
@@ -82,10 +81,7 @@ function TaskForm(props) {
           <span className="slider round"></span>
         </label>
       </div>
-      <button type="submit">Dodaj zadatak</button>
-      <button type="button" onClick={handleCancel} className="CancelButton">
-        Otkaži
-      </button>
+      
     </form>
   );
 }
