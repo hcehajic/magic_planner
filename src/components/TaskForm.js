@@ -81,7 +81,8 @@ function TaskForm(props) {
           <span className="slider round"></span>
         </label>
       </div>
-      
+      <button type="submit" className="submit-button">Submit</button>
+
     </form>
   );
 }
